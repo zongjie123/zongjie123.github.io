@@ -1,21 +1,268 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/03/27/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title></title>
+    <url>/2024/03/27/mysql/</url>
+    <content><![CDATA[<hr>
+<h2 id="title-mysql"><a href="#title-mysql" class="headerlink" title="title:mysql"></a>title:mysql</h2><p>CREATE TABLE student(<br>sno VARCHAR(10) PRIMARY KEY,  	#学生学号<br>sname VARCHAR(20),		#学生姓名<br>sage NUMERIC(2),			#学生年龄<br>ssex VARCHAR(5)			#学生性别<br>);<br>CREATE TABLE teacher(<br>tno VARCHAR(10) PRIMARY KEY,	#教师编号<br>tname VARCHAR(20)		#教师姓名<br>);<br>CREATE TABLE course(<br>cno VARCHAR(10),		#课程编号<br>cname VARCHAR(20),		#程名称<br>tno VARCHAR(20),			#教师编号<br>CONSTRAINT pk_course PRIMARY KEY (cno,tno)	#课程编号和教师编号 联合主键<br>);<br>CREATE TABLE sc(<br>sno VARCHAR(10),			#学生编号<br>cno VARCHAR(10),		#课程编号<br>score decimal(4,2),		#成绩<br>CONSTRAINT pk_sc PRIMARY KEY (sno,cno)	#学生编号和课程编号 联合主键<br>);</p>
+<p>&#x2F;*<strong><strong><strong>初始化学生表的数据</strong></strong></strong>&#x2F;<br>insert into student values (‘s001’,’张三’,23,’男’);<br>insert into student values (‘s002’,’李四’,23,’男’);<br>insert into student values (‘s003’,’吴鹏’,25,’男’);<br>insert into student values (‘s004’,’琴沁’,20,’女’);<br>insert into student values (‘s005’,’王丽’,20,’女’);<br>insert into student values (‘s006’,’李波’,21,’男’);<br>insert into student values (‘s007’,’刘玉’,21,’男’);<br>insert into student values (‘s008’,’萧蓉’,21,’女’);<br>insert into student values (‘s009’,’陈萧晓’,23,’女’);<br>insert into student values (‘s010’,’陈美’,22,’女’);</p>
+<p>&#x2F;<strong><strong><strong><strong><strong><strong><strong><strong><strong>初始化教师表</strong></strong></strong></strong></strong></strong></strong></strong></strong>*****&#x2F;<br>insert into teacher values (‘t001’, ‘刘阳’);<br>insert into teacher values (‘t002’, ‘谌燕’);<br>insert into teacher values (‘t003’, ‘胡明星’);  </p>
+<p>&#x2F;<em><strong><strong><strong><strong><strong><strong><strong>初始化课程表</strong></strong></strong></strong></strong></strong></strong></em>*************&#x2F;<br>insert into course values (‘c001’,’J2SE’,’t002’);<br>insert into course values (‘c002’,’Java Web’,’t002’);<br>insert into course values (‘c003’,’SSH’,’t001’);<br>insert into course values (‘c004’,’Oracle’,’t001’);<br>insert into course values (‘c005’,’SQL SERVER 2005’,’t003’);<br>insert into course values (‘c006’,’C#’,’t003’);<br>insert into course values (‘c007’,’JavaScript’,’t002’);<br>insert into course values (‘c008’,’DIV+CSS’,’t001’);<br>insert into course values (‘c009’,’PHP’,’t003’);<br>insert into course values (‘c010’,’EJB3.0’,’t002’);</p>
+<p>&#x2F;<em><strong><strong><strong><strong><strong><strong><strong>初始化成绩表</strong></strong></strong></strong></strong></strong></strong></em>********&#x2F;<br>insert into sc values (‘s001’,’c001’,78.9);<br>insert into sc values (‘s002’,’c001’,80.9);<br>insert into sc values (‘s003’,’c001’,81.9);<br>insert into sc values (‘s004’,’c001’,60.9);<br>insert into sc values (‘s001’,’c002’,82.9);<br>insert into sc values (‘s002’,’c002’,72.9);<br>insert into sc values (‘s003’,’c002’,81.9);<br>insert into sc values (‘s001’,’c003’,’59’); </p>
+<p>1、查询同一个学生的“c001”课程比“c002”课程成绩高的所有学生的学号；<br>2、查询平均成绩大于60 分的每个同学的学号和平均成绩；<br>3、查询所有同学的学号、姓名、选课数、总成绩；<br>4、查询姓“刘”的老师的个数；<br>5、查询没学过“谌燕”老师课的同学的学号、姓名；<br>6、查询学过“c001”并且也学过编号“c002”课程的同学的学号、姓名<br>7、查询学过“谌燕”老师所教的课的同学的学号、姓名；<br>8、查询课程编号“c002”的成绩比课程编号“c001”课程低的所有同学的学号、姓名；<br>9、查询所有课程成绩小于60 分的同学的学号、姓名；<br>10、查询没有学全所有课的同学的学号、姓名；<br>11、查询至少有一门课与学号为“s001”的同学所学相同的其他同学的学号和姓名；<br>15、删除学习“谌燕”老师课的SC 表记录；<br>17、查询各科成绩最高和最低的分：以如下形式显示：课程编号，最高分，最低分<br>18、按各科平均成绩从低到高和及格率的百分数从高到低顺序<br>20、统计列的各科成绩,各分数段人数:课程编号,课程名称,[100-85],[85-70],[70-60],[ &lt;60]</p>
+<p>21、查询各科成绩前三名的记录:(不考虑成绩并列情况)<br>22、查询每门课程被选修的学生数<br>23、查询出只选修了一门课程的全部学生的学号和姓名<br>24、查询男生、女生人数<br>25、查询姓“张”的学生名单<br>26、查询同名同性学生名单，并统计同名人数<br>27、1981 年出生的学生名单(注：Student 表中Sage 列的类型是number)<br>28、查询每门课程的平均成绩，结果按平均成绩升序排列，平均成绩相同时，按课程号降序排列<br>29、查询平均成绩大于85 的所有学生的学号、姓名和平均成绩<br>30、查询课程名称为“数据库”，且分数低于60 的学生姓名和分数<br>31、查询所有学生的选课情况；<br>32、查询任何一门课程成绩在70 分以上的姓名、课程名称和分数；<br>33、查询不及格的课程，并按课程号从大到小排列<br>34、查询课程编号为c001 且课程成绩在80 分以上的学生的学号和姓名；<br>35、求选了课程的学生人数<br>36、查询选修“谌燕”老师所授课程的学生中，成绩最高的学生姓名及其成绩<br>37、查询各个课程及相应的选修人数<br>38、查询不同课程成绩相同的学生的学号、课程号、学生成绩<br>39、查询每门功课成绩最好的前两名<br>40、统计每门课程的学生选修人数（超过10 人的课程才统计）。要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列<br>41、检索至少选修两门课程的学生学号<br>42、查询全部学生都选修的课程的课程号和课程名<br>43、查询没学过“谌燕”老师讲授的任一门课程的学生姓名<br>44、查询两门以上不及格课程的同学的学号及其平均成绩<br>45、检索“c004”课程分数小于60，按分数降序排列的同学学号<br>46、删除“s002”同学的“c001”课程的成绩</p>
+<p>答案:</p>
+<ol>
+<li></li>
+</ol>
+<hr>
+<p>select a.sno from<br>(select * from sc where cno&#x3D;’c001’) a<br>inner join<br>(select * from sc where cno&#x3D;’c002’) b on a.sno &#x3D; b.sno<br>where a.score&gt;b.score</p>
+<hr>
+<ol start="2">
+<li></li>
+</ol>
+<hr>
+<p>select sno,avg(score) from sc  group by sno having avg(score)&gt;60;</p>
+<hr>
+<ol start="3">
+<li></li>
+</ol>
+<hr>
+<p>select a.sname,b.* from student a<br>left join<br>(select sno,sum(score) total_score,count(*) count from sc group by sno) b<br>on a.sno&#x3D;b.sno;</p>
+<hr>
+<ol start="4">
+<li></li>
+</ol>
+<hr>
+<p>select count(*) from teacher where tname like ‘刘%’;</p>
+<hr>
+<ol start="5">
+<li></li>
+</ol>
+<hr>
+<p>select s.sno,s.sname from student s<br>where s.sno not in(<br>select distinct sc.sno from teacher t<br>inner join course c on t.tno &#x3D; c.tno<br>inner join sc on sc.cno &#x3D; c.cno<br>where t.tname&#x3D;’谌燕’<br>);</p>
+<hr>
+<ol start="6">
+<li></li>
+</ol>
+<hr>
+<p>select st.* from sc a<br>join sc b on a.sno&#x3D;b.sno<br>join student st on st.sno&#x3D;a.sno<br>where a.cno&#x3D;’c001’ and b.cno&#x3D;’c002’ and st.sno&#x3D;a.sno;</p>
+<hr>
+<ol start="7">
+<li></li>
+</ol>
+<hr>
+<p>select st.* from student st join sc s on st.sno&#x3D;s.sno<br>join course c on s.cno&#x3D;c.cno<br>join teacher t on c.tno&#x3D;t.tno<br>where t.tname&#x3D;’谌燕’</p>
+<hr>
+<ol start="8">
+<li></li>
+</ol>
+<hr>
+<p>select * from student st<br>join sc a on st.sno&#x3D;a.sno<br>join sc b on st.sno&#x3D;b.sno<br>where a.cno&#x3D;’c002’ and b.cno&#x3D;’c001’ and a.score &lt; b.score</p>
+<hr>
+<ol start="9">
+<li></li>
+</ol>
+<hr>
+<p>select st.*,s.score from student st<br>join sc s on st.sno&#x3D;s.sno<br>where s.score &lt;60</p>
+<hr>
+<ol start="10">
+<li></li>
+</ol>
+<hr>
+<p>select stu.sno,stu.sname,count(sc.cno) from student stu<br>left join sc on stu.sno&#x3D;sc.sno<br>group by stu.sno,stu.sname<br>having count(sc.cno)&lt;(select count(distinct cno) from course)</p>
+<hr>
+<ol start="11">
+<li></li>
+</ol>
+<hr>
+<p>select distinct st.sno,st.sname from student st<br>inner join sc on st.sno&#x3D;sc.sno<br>where sc.cno &#x3D;any (<br>select cno from sc where sc.sno &#x3D; ‘s001’<br>) and st.sno!&#x3D;’s001’;</p>
+<hr>
+<ol start="12">
+<li></li>
+</ol>
+<hr>
+<p>select distinct st.sno,st.sname from student st<br>inner join sc on st.sno&#x3D;sc.sno<br>where sc.cno &#x3D;any (<br>select cno from sc where sc.sno &#x3D; ‘s001’<br>) and st.sno!&#x3D;’s001’;</p>
+<hr>
+<ol start="15">
+<li></li>
+</ol>
+<hr>
+<p>delete from sc<br>where sc.cno in<br>(<br>select cno from course c<br>left join teacher t on  c.tno&#x3D;t.tno<br>where t.tname&#x3D;’谌燕’<br>)</p>
+<hr>
+<ol start="17">
+<li></li>
+</ol>
+<hr>
+<p>select cno ,max(score),min(score) from sc group by cno;</p>
+<hr>
+<ol start="18">
+<li></li>
+</ol>
+<hr>
+<p>select cno,avg(score),sum(case when score&gt;&#x3D;60 then 1 else 0 end)&#x2F;count(*)<br>as 及格率<br>from sc group by cno<br>order by avg(score) , 及格率desc</p>
+<hr>
+<ol start="20">
+<li></li>
+</ol>
+<hr>
+<p>select sc.cno,c.cname,<br>sum(case  when score between 85 and 100 then 1 else 0 end) AS “[100-85]”,<br>sum(case  when score between 70 and 85 then 1 else 0 end) AS “[85-70]”,<br>sum(case  when score between 60 and 70 then 1 else 0 end) AS “[70-60]”,<br>sum(case  when score &lt;60 then 1 else 0 end) AS “[&lt;60]”<br>from sc<br>inner join course c on sc.cno&#x3D;c.cno<br>group by sc.cno ,c.cname;</p>
+<hr>
+<ol start="21">
+<li></li>
+</ol>
+<hr>
+<p>select * from<br>(select sno,cno,score, row_number()over(partition by cno order by score desc) rn from sc) t<br>where t.rn&lt;4</p>
+<hr>
+<ol start="22">
+<li></li>
+</ol>
+<hr>
+<p>select cno,count(sno)from sc group by cno;</p>
+<hr>
+<ol start="23">
+<li></li>
+</ol>
+<hr>
+<p>select sc.sno,st.sname,count(cno) from student st<br>left join sc<br>on sc.sno&#x3D;st.sno<br>group by st.sname,sc.sno having count(cno)&#x3D;1;</p>
+<hr>
+<ol start="24">
+<li></li>
+</ol>
+<hr>
+<p>select ssex,count(*)from student group by ssex;</p>
+<hr>
+<ol start="25">
+<li></li>
+</ol>
+<hr>
+<p>select * from student where sname like ‘张%’;</p>
+<hr>
+<ol start="26">
+<li></li>
+</ol>
+<hr>
+<p>select sname,count(<em>)from student group by sname having count(</em>)&gt;1;</p>
+<hr>
+<ol start="27">
+<li></li>
+</ol>
+<hr>
+<p>select sno,sname,sage,ssex from student t where to_char(sysdate,’yyyy’)-sage &#x3D;1988</p>
+<hr>
+<ol start="28">
+<li></li>
+</ol>
+<hr>
+<p>select cno,avg(score) from sc group by cno order by avg(score)asc,cno desc;</p>
+<hr>
+<ol start="29">
+<li></li>
+</ol>
+<hr>
+<p>select st.sno,st.sname,avg(score) from student st<br>left join sc<br>on sc.sno&#x3D;st.sno<br>group by st.sno,st.sname having avg(score)&gt;85;</p>
+<hr>
+<ol start="30">
+<li></li>
+</ol>
+<hr>
+<p>select sname,score from student st,sc,course c<br>where st.sno&#x3D;sc.sno and sc.cno&#x3D;c.cno and c.cname&#x3D;’Oracle’ and sc.score&lt;60</p>
+<hr>
+<ol start="31">
+<li></li>
+</ol>
+<hr>
+<p>select st.sno,st.sname,c.cname from student st,sc,course c<br>where sc.sno&#x3D;st.sno and sc.cno&#x3D;c.cno;</p>
+<hr>
+<ol start="32">
+<li></li>
+</ol>
+<hr>
+<p>select st.sname,c.cname,sc.score from student st,sc,course c<br>where sc.sno&#x3D;st.sno and sc.cno&#x3D;c.cno and sc.score&gt;70</p>
+<hr>
+<ol start="33">
+<li></li>
+</ol>
+<hr>
+<p>select sc.sno,c.cname,sc.score from sc,course c<br>where sc.cno&#x3D;c.cno and sc.score&lt;60 order by sc.cno desc;</p>
+<hr>
+<ol start="34">
+<li></li>
+</ol>
+<hr>
+<p>select st.sno,st.sname,sc.score from sc,student st<br>where sc.sno&#x3D;st.sno and cno&#x3D;’c001’ and score&gt;80;</p>
+<hr>
+<ol start="35">
+<li></li>
+</ol>
+<hr>
+<p>select count(distinct sno) from sc;</p>
+<hr>
+<ol start="36">
+<li></li>
+</ol>
+<hr>
+<p>select st.sname,score from student st,sc ,course c,teacher t<br>where<br>st.sno&#x3D;sc.sno and sc.cno&#x3D;c.cno and c.tno&#x3D;t.tno<br>and t.tname&#x3D;’谌燕’ and sc.score&#x3D;<br>(select max(score)from sc where sc.cno&#x3D;c.cno)</p>
+<hr>
+<ol start="37">
+<li></li>
+</ol>
+<hr>
+<p>select cno,count(sno) from sc group by cno;</p>
+<hr>
+<ol start="38">
+<li></li>
+</ol>
+<hr>
+<p>select a.* from sc a ,sc b where a.score&#x3D;b.score and a.cno&lt;&gt;b.cno</p>
+<hr>
+<ol start="39">
+<li></li>
+</ol>
+<hr>
+<p>select * from (<br>select sno,cno,score,row_number()over(partition by cno order by score desc) my_rn from sc t<br>) t<br>where t.my_rn&lt;&#x3D;2</p>
+<hr>
+<ol start="40">
+<li></li>
+</ol>
+<hr>
+<p>select cno,count(sno) from sc group by cno<br>having count(sno)&gt;10<br>order by count(sno) desc,cno asc;</p>
+<hr>
+<ol start="41">
+<li></li>
+</ol>
+<hr>
+<p>select sno from sc group by sno having count(cno)&gt;1;<br>||<br>select sno from sc group by sno having count(sno)&gt;1;</p>
+<hr>
+<ol start="42">
+<li></li>
+</ol>
+<hr>
+<p>select distinct(c.cno),c.cname from course c ,sc<br>where sc.cno&#x3D;c.cno<br>||<br>select cno,cname from course c<br>where c.cno in<br>(select cno from sc group by cno)</p>
+<hr>
+<ol start="43">
+<li></li>
+</ol>
+<hr>
+<p>select st.sname from student st<br>where st.sno not in<br>(select distinct sc.sno from sc,course c,teacher t<br>where sc.cno&#x3D;c.cno and c.tno&#x3D;t.tno and t.tname&#x3D;’谌燕’)</p>
+<hr>
+<ol start="44">
+<li></li>
+</ol>
+<hr>
+<p>select sno,avg(score)from sc<br>where sno in<br>(select sno from sc where sc.score&lt;60<br>group by sno having count(sno)&gt;1<br>) group by sno</p>
+<hr>
+<ol start="45">
+<li></li>
+</ol>
+<hr>
+<p>select sno from sc where cno&#x3D;’c004’ and score&lt;90 order by score desc;</p>
+<hr>
+<ol start="46">
+<li></li>
+</ol>
+<hr>
+<p>delete from sc where sno&#x3D;’s002’ and cno&#x3D;’c001’;<br>*********************************<a href="https://hexo.io/docs/one-command-deployment.html">https://hexo.io/docs/one-command-deployment.html</a>)</p>
 ]]></content>
   </entry>
   <entry>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>困困包的博客</title>
+  
+  <subtitle>人生是一场归途</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2024-03-27T09:02:22.626Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>小困包</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小困包</title>
+    <link href="http://example.com/2024/03/27/%E5%B0%8F%E5%9B%B0%E5%8C%85/"/>
+    <id>http://example.com/2024/03/27/%E5%B0%8F%E5%9B%B0%E5%8C%85/</id>
+    <published>2024-03-27T09:02:22.000Z</published>
+    <updated>2024-03-27T09:02:22.626Z</updated>
+    
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://example.com/2024/03/27/mysql/"/>
+    <id>http://example.com/2024/03/27/mysql/</id>
+    <published>2024-03-27T08:57:46.376Z</published>
+    <updated>2024-03-27T12:37:43.447Z</updated>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;h2 id=&quot;title-mysql&quot;&gt;&lt;a href=&quot;#title-mysql&quot; class=&quot;headerlink&quot; title=&quot;title:mysql&quot;&gt;&lt;/a&gt;title:mysql&lt;/h2&gt;&lt;p&gt;CREATE TABLE student(&lt;br&gt;sno </summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
